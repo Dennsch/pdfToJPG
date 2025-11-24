@@ -63,14 +63,14 @@ router.post('/convert', upload.single('pdf'), async (req: Request, res: Response
           })),
         },
       };
-      res.json(response);
+      return res.json(response);
     } else {
       const response: ApiResponse = {
         success: false,
         message: result.message,
         error: result.error,
       };
-      res.status(500).json(response);
+      return res.status(500).json(response);
     }
   } catch (error) {
     next(error);
@@ -115,7 +115,7 @@ router.get('/status/:jobId', (req: Request, res: Response) => {
     },
   };
 
-  res.json(response);
+  return res.json(response);
 });
 
 /**
@@ -143,7 +143,7 @@ router.get('/download/:jobId/:filename', (req: Request, res: Response) => {
   res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
   
   // Send file
-  res.sendFile(imagePath);
+  return res.sendFile(imagePath);
 });
 
 /**
@@ -169,7 +169,7 @@ router.get('/jobs', (req: Request, res: Response) => {
     })),
   };
 
-  res.json(response);
+  return res.json(response);
 });
 
 export default router;
