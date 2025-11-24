@@ -15,7 +15,7 @@ router.get('/health', (req, res) => {
       version: process.env.npm_package_version || '1.0.0',
     },
   };
-  res.json(response);
+  return res.json(response);
 });
 
 // API info endpoint
@@ -37,7 +37,7 @@ router.get('/', (req, res) => {
       maxFileSize: '10MB',
     },
   };
-  res.json(response);
+  return res.json(response);
 });
 
 // Mount PDF routes
